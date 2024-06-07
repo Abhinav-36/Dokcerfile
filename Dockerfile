@@ -1,15 +1,16 @@
 
 
-
 FROM centos:7
+MAINTAINER John Doe <johndoe@example.com>
 
-# Update packages and install httpd server
-RUN yum update -y && \
-    yum install -y httpd && \
-    yum clean all
+# Update the system
+RUN yum update -y
 
-# Expose port 80 for httpd server
+# Install httpd
+RUN yum install -y httpd
+
+# Expose port 80
 EXPOSE 80
 
-# Start httpd server on container startup
+# Start httpd service
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
