@@ -2,6 +2,12 @@
 
 
 FROM centos:7
-RUN yum update -y && yum install httpd -y
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+# Install httpd server
+RUN yum install -y httpd
+
+# Expose port 80 for http traffic
 EXPOSE 80
+
+# Start httpd server on container startup
+CMD ["httpd", "-D", "FOREGROUND"]
