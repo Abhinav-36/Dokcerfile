@@ -2,12 +2,15 @@
 
 
 FROM centos:7
+MAINTAINER Your Name <your_email@domain.com>
 
 # Install httpd server
-RUN yum install -y httpd
+RUN yum -y update && \
+    yum -y install httpd && \
+    yum clean all
 
-# Expose port 80 for http traffic
+# Expose port 80
 EXPOSE 80
 
-# Start httpd server on container startup
-CMD ["httpd", "-D", "FOREGROUND"]
+# Start httpd server
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
